@@ -11,20 +11,20 @@ import javax.persistence.*;
 public class Car {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", nullable = false)
 	private Long id;
 
 	@Column(name = "brand", length = 128, nullable = false)
 	private String brand;
 
-	@Column(name = "numberOfSeats", nullable = false)
+	@Column(name = "number_of_seats", nullable = false)
 	private Long numberOfSeats;
 
 	@Enumerated(EnumType.STRING)
 	private Color color;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "person_id")
 	private Person person;
 }

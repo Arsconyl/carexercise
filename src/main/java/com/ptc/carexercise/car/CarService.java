@@ -16,15 +16,14 @@ public class CarService {
 	}
 
 	public Car getCar(Long id) {
-		return carRepository.findById(id).orElse(null);
+		return carRepository.findById(id).orElseThrow(() -> new CarNotFoundException(id));
 	}
 
 	public Car createCar(Car car) {
 		return carRepository.save(car);
 	}
 
-	public Car updateCar(Long id, Car car) {
-		car.setId(id);
+	public Car updateCar(Car car) {
 		return carRepository.save(car);
 	}
 

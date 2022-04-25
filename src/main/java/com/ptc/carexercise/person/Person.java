@@ -1,5 +1,6 @@
 package com.ptc.carexercise.person;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ptc.carexercise.car.Car;
 import lombok.Data;
 
@@ -29,5 +30,6 @@ public class Person {
 	private Type type;
 
 	@OneToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Car> cars;
 }
