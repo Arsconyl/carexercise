@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,8 +51,13 @@ public class CarController {
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public void deleteCar(@PathVariable Long id) {
-		carService.deleteCar(id);
+	public ResponseEntity<String> deleteCar(@PathVariable Long id) {
+		try {
+			carService.deleteCar(id);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	private CarDTO convertToDTO(Car car) {
