@@ -18,13 +18,13 @@ public class Car {
 	@Column(name = "brand", length = 128, nullable = false)
 	private String brand;
 
-	@Column(name = "numberOfSeats", nullable = false)
+	@Column(name = "number_of_seats", nullable = false)
 	private Long numberOfSeats;
 
 	@Enumerated(EnumType.STRING)
 	private Color color;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "person_id")
 	private Person person;
 }

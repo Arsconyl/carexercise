@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS cars;
 CREATE TABLE cars(
     id SERIAL PRIMARY KEY,
     brand VARCHAR(128) NOT NULL,
-    numberOfSeats INTEGER NOT NULL,
+    number_of_seats INTEGER NOT NULL,
     color VARCHAR(128) NOT NULL,
     person_id INTEGER
 );
