@@ -34,12 +34,13 @@ public class JwtFilter extends OncePerRequestFilter {
 
 		if (tokenHeader != null && tokenHeader.startsWith("Bearer ")) {
 			token = tokenHeader.substring(7);
-			username = tokenManager.getUsernameFromToken(token);
+			if (!token.isEmpty())
+				username = tokenManager.getUsernameFromToken(token);
 		}
 		else if (!login.contains("/login"))
 			throw new BearerNotFoundException("Bearer String not found");
 
-		if (null != username && SecurityContextHolder.getContext().getAuthentication() == null) {
+		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 			if (tokenManager.validateToken(token, userDetails)) {
 				UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(

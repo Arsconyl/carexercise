@@ -21,56 +21,62 @@ class JwtControllerTest {
 	@Test
 	@Order(1)
 	void getToken() throws Exception {
-		mockMvc.perform(post("/login")
-						.contentType("application/json")
-						.content("{\"username\":\"carexercise\",\"password\":\"carexercise\"}"))
-				.andExpect(status().isOk())
-				.andExpect(content().contentType("application/json"))
-				.andExpect(jsonPath("$.jwtToken").exists());
+		mockMvc.perform(
+			post("/login")
+			.contentType("application/json")
+			.content("{\"username\":\"carexercise\",\"password\":\"carexercise\"}"))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType("application/json"))
+			.andExpect(jsonPath("$.jwtToken").exists());
 	}
 
 	@Test
 	@Order(2)
 	void getTokenWithInvalidCredentials() throws Exception {
-		mockMvc.perform(post("/login")
-						.contentType("application/json")
-						.content("{\"username\":\"carexercise\",\"password\":\"invalid\"}"))
-				.andExpect(status().isUnauthorized());
+		mockMvc.perform(
+			post("/login")
+			.contentType("application/json")
+			.content("{\"username\":\"carexercise\",\"password\":\"invalid\"}"))
+			.andExpect(status().isUnauthorized());
 	}
 
 	@Test
 	@Order(3)
 	void getTokenWithInvalidUsername() throws Exception {
-		mockMvc.perform(post("/login")
-						.contentType("application/json")
-						.content("{\"username\":\"invalid\",\"password\":\"carexercise\"}"))
-				.andExpect(status().isUnauthorized());
+		mockMvc.perform(
+			post("/login")
+			.contentType("application/json")
+			.content("{\"username\":\"invalid\",\"password\":\"carexercise\"}"))
+			.andExpect(status().isUnauthorized());
 	}
 
 	@Test
 	@Order(4)
 	void getTokenWithInvalidPassword() throws Exception {
-		mockMvc.perform(post("/login")
-						.contentType("application/json")
-						.content("{\"username\":\"carexercise\",\"password\":\"invalid\"}"))
-				.andExpect(status().isUnauthorized());
+		mockMvc.perform(
+			post("/login")
+			.contentType("application/json")
+			.content("{\"username\":\"carexercise\",\"password\":\"invalid\"}"))
+			.andExpect(status().isUnauthorized());
 	}
 
 	@Test
 	@Order(5)
 	void getTokenWithInvalidUsernameAndPassword() throws Exception {
-		mockMvc.perform(post("/login")
-						.contentType("application/json")
-						.content("{\"username\":\"invalid\",\"password\":\"invalid\"}"))
-				.andExpect(status().isUnauthorized());
+		mockMvc.perform(
+			post("/login")
+			.contentType("application/json")
+			.content("{\"username\":\"invalid\",\"password\":\"invalid\"}"))
+			.andExpect(status().isUnauthorized());
 	}
 
 	@Test
 	@Order(6)
 	void getTokenWithInvalidUsernameAndPasswordAndEmptyUsername() throws Exception {
-		mockMvc.perform(post("/login")
-						.contentType("application/json")
-						.content("{\"username\":\"\",\"password\":\"invalid\"}"))
-				.andExpect(status().isUnauthorized());
+		mockMvc.perform(
+			post("/login")
+			.contentType("application/json")
+			.content("{\"username\":\"\",\"password\":\"invalid\"}"))
+			.andExpect(status().isUnauthorized());
 	}
 }
