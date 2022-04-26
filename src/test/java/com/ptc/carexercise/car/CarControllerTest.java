@@ -19,17 +19,12 @@ class CarControllerTest {
 
 	@Test
 	@Order(1)
-	void contextLoads() {
-	}
-
-	@Test
-	@Order(2)
 	void testGetCars() throws Exception {
 		mockMvc.perform(get("/cars")).andExpect(status().isOk());
 	}
 
 	@Test
-	@Order(3)
+	@Order(2)
 	void testGetCar() throws Exception {
 		mockMvc.perform(
 				get("/cars/1")).andExpect(status().isOk())
@@ -41,19 +36,19 @@ class CarControllerTest {
 	}
 
 	@Test
-	@Order(4)
+	@Order(3)
 	void testGetCarNotFound() throws Exception {
 		mockMvc.perform(get("/cars/0")).andExpect(status().isNotFound());
 	}
 
 	@Test
-	@Order(5)
+	@Order(4)
 	void testGetCarBadRequest() throws Exception {
 		mockMvc.perform(get("/cars/abc")).andExpect(status().isBadRequest());
 	}
 
 	@Test
-	@Order(6)
+	@Order(5)
 	void testDeleteCar() throws Exception {
 		mockMvc.perform(
 				delete("/cars/10"))
@@ -68,7 +63,7 @@ class CarControllerTest {
 	}
 
 	@Test
-	@Order(7)
+	@Order(6)
 	void testAddCar() throws Exception {
 		mockMvc.perform(
 				post("/cars")
@@ -84,7 +79,7 @@ class CarControllerTest {
 	}
 
 	@Test
-	@Order(8)
+	@Order(7)
 	void testUpdateCar() throws Exception {
 		mockMvc.perform(
 				put("/cars/16")
