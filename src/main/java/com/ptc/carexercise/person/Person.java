@@ -13,7 +13,7 @@ import java.util.List;
 public class Person {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", nullable = false)
 	private Long id;
 
@@ -30,6 +30,7 @@ public class Person {
 	private Type type;
 
 	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "person_id")
 	@JsonIgnore
 	private List<Car> cars;
 }
