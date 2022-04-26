@@ -15,3 +15,10 @@ CREATE TABLE people(
     company VARCHAR(128) NOT NULL,
     type INTEGER NOT NULL
 );
+
+DROP TABLE IF EXISTS cars_people;
+DROP TABLE IF EXISTS people_cars;
+CREATE TABLE people_cars(
+    car_id INTEGER NOT NULL,
+    person_id INTEGER NOT NULL
+);

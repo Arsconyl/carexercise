@@ -16,7 +16,7 @@ public class PersonService {
 	}
 
 	public Person getPerson(Long id) {
-		return personRepository.findById(id).orElse(null);
+		return personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(id));
 	}
 
 	public Person createPerson(Person person) {
