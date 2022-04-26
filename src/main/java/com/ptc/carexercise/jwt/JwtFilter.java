@@ -28,6 +28,7 @@ public class JwtFilter extends OncePerRequestFilter {
 			throws ServletException, IOException, ExpiredJwtException, IllegalArgumentException {
 
 		String tokenHeader = request.getHeader("Authorization");
+		String login = request.getRequestURI();
 		String username = null;
 		String token = null;
 
@@ -35,7 +36,7 @@ public class JwtFilter extends OncePerRequestFilter {
 			token = tokenHeader.substring(7);
 			username = tokenManager.getUsernameFromToken(token);
 		}
-		else
+		else if (!login.contains("/login"))
 			throw new BearerNotFoundException("Bearer String not found");
 
 		if (null != username && SecurityContextHolder.getContext().getAuthentication() == null) {
