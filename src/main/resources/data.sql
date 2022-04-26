@@ -1,9 +1,3 @@
-INSERT INTO people (first_name, last_name, company, type) VALUES ('John', 'Doe', 'Acme', 1);
-INSERT INTO people (first_name, last_name, company, type) VALUES ('William', 'Jones', 'Acme', 2);
-INSERT INTO people (first_name, last_name, company, type) VALUES ('David', 'Miller', 'Acme', 3);
-INSERT INTO people (first_name, last_name, company, type) VALUES ('Richard', 'Davis', 'Acme', 4);
-
-
 INSERT INTO cars(brand, number_of_seats, color, person_id) VALUES('Mercedes', 5, 'RED', 1);
 INSERT INTO cars(brand, number_of_seats, color, person_id) VALUES('BMW', 3, 'BLACK', null);
 INSERT INTO cars(brand, number_of_seats, color, person_id) VALUES('Audi', 5, 'WHITE', null);
@@ -33,3 +27,16 @@ INSERT INTO cars(brand, number_of_seats, color, person_id) VALUES('Kia', 5, 'SIL
 INSERT INTO cars(brand, number_of_seats, color, person_id) VALUES('Peugeot', 5, 'GOLD', null);
 INSERT INTO cars(brand, number_of_seats, color, person_id) VALUES('Dacia', 5, 'BROWN', null);
 INSERT INTO cars(brand, number_of_seats, color, person_id) VALUES('Skoda', 5, 'BLACK', null);
+
+
+INSERT INTO people (first_name, last_name, company, type) VALUES ('John', 'Doe', 'Acme', 1);
+INSERT INTO people (first_name, last_name, company, type) VALUES ('William', 'Jones', 'Acme', 1);
+INSERT INTO people (first_name, last_name, company, type) VALUES ('David', 'Miller', 'Acme', 1);
+INSERT INTO people (first_name, last_name, company, type) VALUES ('Richard', 'Davis', 'Acme', 1);
+INSERT INTO people (first_name, last_name, company, type) VALUES ('Aby', 'Cyclette', 'Acme', 1);
+INSERT INTO people (first_name, last_name, company, type) VALUES ('Paul', 'Ochon', 'Acme', 1);
+INSERT INTO people (first_name, last_name, company, type) VALUES ('Jim', 'Nastique', 'Acme', 1);
+INSERT INTO people (first_name, last_name, company, type) VALUES ('Ella', 'Lesyeubleu', 'Acme', 1);
+INSERT INTO people (first_name, last_name, company, type) VALUES ('Lara', 'Pafromage', 'Acme', 1);
+INSERT INTO people (first_name, last_name, company, type) VALUES ('Daisy', 'Draté', 'Acme', 1);
+INSERT INTO people (first_name, last_name, company, type) VALUES ('Acme', null, 'Acme', 0);
