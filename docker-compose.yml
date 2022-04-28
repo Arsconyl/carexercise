@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  app:
+    image: 'carexercise:latest'
+    container_name: carexercise
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/carexercise
+      SPRING_BOOT_ADMIN_CLIENT_URL: http://admin:1111
+    ports:
+      - "8081:8081"
+    build:
+        context: .
+    depends_on:
+      - admin
+      - db
+
+
+  db:
+    image: 'postgres:14.2-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=carexercise
+      - POSTGRES_PASSWORD=carexercise
+      - POSTGRES_DB=carexercise
+    ports:
+      - "5432:5432"
+
+  admin:
+    image: 'slydeveloper/spring-boot-admin:1.3'
+    container_name: spring-boot-admin-docker
+    environment:
+      - SPRING_BOOT_ADMIN_USER_NAME=admin
+      - SPRING_BOOT_ADMIN_USER_PASSWORD=admin
+    ports:
+      - "8082:1111"
+    healthcheck:
+      test: "curl -sS http://localhost:8082/health"
+      interval: 1s
+      timeout: 60s
+      retries: 120
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    env_file:
+      - grafana.env
