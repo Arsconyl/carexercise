@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping(path = "/cars", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/cars", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CarController {
 
 	@Autowired

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping(path = "/people", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/people", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PersonController {
 
 	@Autowired

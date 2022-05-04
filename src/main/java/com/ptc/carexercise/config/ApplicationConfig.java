@@ -15,6 +15,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
 
 @Configuration
 public class ApplicationConfig extends WebSecurityConfigurerAdapter {
@@ -46,7 +49,7 @@ public class ApplicationConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
-				.authorizeRequests().antMatchers("/login", "/actuator/**")
+				.authorizeRequests().antMatchers("/api/login", "/actuator/**")
 				.permitAll()
 				.anyRequest().authenticated()
 				.and()

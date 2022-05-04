@@ -37,7 +37,7 @@ public class JwtFilter extends OncePerRequestFilter {
 			if (!token.isEmpty())
 				username = tokenManager.getUsernameFromToken(token);
 		}
-		else if (!login.contains("/login") && !login.contains("/actuator"))
+		else if (!login.contains("/api/login") && !login.contains("/actuator"))
 			throw new BearerNotFoundException("Bearer String not found");
 
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

@@ -31,7 +31,7 @@ class CarControllerTest {
 	@Order(1)
 	void testGetCars() throws Exception {
 		mockMvc.perform(
-			get("/cars")
+			get("/api/cars")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isOk());
@@ -41,7 +41,7 @@ class CarControllerTest {
 	@Order(2)
 	void testGetCar() throws Exception {
 		mockMvc.perform(
-			get("/cars/1")
+			get("/api/cars/1")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isOk())
@@ -56,7 +56,7 @@ class CarControllerTest {
 	@Order(3)
 	void testGetCarNotFound() throws Exception {
 		mockMvc.perform(
-			get("/cars/0")
+			get("/api/cars/0")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isNotFound());
@@ -66,7 +66,7 @@ class CarControllerTest {
 	@Order(4)
 	void testGetCarBadRequest() throws Exception {
 		mockMvc.perform(
-			get("/cars/abc")
+			get("/api/cars/abc")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isBadRequest());
@@ -76,18 +76,18 @@ class CarControllerTest {
 	@Order(5)
 	void testDeleteCar() throws Exception {
 		mockMvc.perform(
-			delete("/cars/10")
+			delete("/api/cars/10")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isOk());
 		mockMvc.perform(
-			delete("/cars/10")
+			delete("/api/cars/10")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isBadRequest())
 			.andExpect(content().contentType("application/json"));
 		mockMvc.perform(
-			get("/cars/10")
+			get("/api/cars/10")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isNotFound());
@@ -97,7 +97,7 @@ class CarControllerTest {
 	@Order(6)
 	void testAddCar() throws Exception {
 		mockMvc.perform(
-			post("/cars")
+			post("/api/cars")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise")))
 			.contentType("application/json")
@@ -115,7 +115,7 @@ class CarControllerTest {
 	@Order(7)
 	void testUpdateCar() throws Exception {
 		mockMvc.perform(
-			put("/cars/16")
+			put("/api/cars/16")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise")))
 			.contentType("application/json")
@@ -132,7 +132,7 @@ class CarControllerTest {
 	@Order(8)
 	void testGetCarsWithoutToken() throws Exception {
 		mockMvc.perform(
-			get("/cars")
+			get("/api/cars")
 			.header("Authorization",
 					"Bearer "))
 			.andExpect(status().isUnauthorized());

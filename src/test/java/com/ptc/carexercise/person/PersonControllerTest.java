@@ -29,7 +29,7 @@ class PersonControllerTest {
 	@Order(1)
 	void testGetPeople() throws Exception {
 		mockMvc.perform(
-			get("/people")
+			get("/api/people")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isOk());
@@ -39,7 +39,7 @@ class PersonControllerTest {
 	@Order(2)
 	void testGetPerson() throws Exception {
 		mockMvc.perform(
-			get("/people/1")
+			get("/api/people/1")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isOk())
@@ -55,7 +55,7 @@ class PersonControllerTest {
 	@Order(3)
 	void testGetPersonNotFound() throws Exception {
 		mockMvc.perform(
-			get("/people/0")
+			get("/api/people/0")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isNotFound());
@@ -65,7 +65,7 @@ class PersonControllerTest {
 	@Order(4)
 	void testGetPersonBadRequest() throws Exception {
 		mockMvc.perform(
-			get("/people/abc")
+			get("/api/people/abc")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isBadRequest());
@@ -75,18 +75,18 @@ class PersonControllerTest {
 	@Order(5)
 	void testDeletePerson() throws Exception {
 		mockMvc.perform(
-			delete("/people/10")
+			delete("/api/people/10")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isOk());
 		mockMvc.perform(
-			delete("/people/10")
+			delete("/api/people/10")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isBadRequest())
 			.andExpect(content().contentType("application/json"));
 		mockMvc.perform(
-			get("/people/10")
+			get("/api/people/10")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise"))))
 			.andExpect(status().isNotFound());
@@ -96,7 +96,7 @@ class PersonControllerTest {
 	@Order(6)
 	void testAddPerson() throws Exception {
 		mockMvc.perform(
-			post("/people")
+			post("/api/people")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise")))
 			.contentType("application/json")
@@ -114,7 +114,7 @@ class PersonControllerTest {
 	@Order(7)
 	void testUpdatePerson() throws Exception {
 		mockMvc.perform(
-			put("/people/7")
+			put("/api/people/7")
 			.header("Authorization",
 					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise")))
 			.contentType("application/json")
@@ -132,7 +132,7 @@ class PersonControllerTest {
 	@Order(8)
 	void testGetPeopleWithoutToken() throws Exception {
 		mockMvc.perform(
-			get("/people")
+			get("/api/people")
 				.header("Authorization",
 						"Bearer "))
 			.andExpect(status().isUnauthorized());

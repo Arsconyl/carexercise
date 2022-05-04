@@ -25,7 +25,7 @@ public class JwtController {
 	@Autowired
 	private TokenManager tokenManager;
 
-	@PostMapping("/login")
+	@PostMapping("/api/login")
 	public ResponseEntity<JwtResponseModel> createToken(@RequestBody JwtRequestModel request)
 		throws DisabledException, BadCredentialsException {
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
