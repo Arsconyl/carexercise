@@ -42,4 +42,10 @@ public class CarService {
 		car.setPerson(person);
 		return carRepository.save(car);
 	}
+
+	public Car takeCar(Long id) {
+		Car car = getCar(id);
+		car.setPerson(null);
+		return carRepository.save(car);
+	}
 }

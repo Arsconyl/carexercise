@@ -158,4 +158,21 @@ class CarControllerTest {
 			.andExpect(jsonPath("$.person.company").value("Acme"))
 			.andExpect(jsonPath("$.person.type").value("PHYSICAL"));
 	}
+
+	@Test
+	@Order(10)
+	void testTakeCar() throws Exception {
+		mockMvc.perform(
+			post("/api/cars/4/take")
+			.header("Authorization",
+					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise")))
+			.contentType("application/json"))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType("application/json"))
+			.andExpect(jsonPath("$.id").value(4))
+			.andExpect(jsonPath("$.brand").value("Volkswagen"))
+			.andExpect(jsonPath("$.numberOfSeats").value(5L))
+			.andExpect(jsonPath("$.color").value("BLUE"))
+			.andExpect(jsonPath("$.person").doesNotExist());
+	}
 }

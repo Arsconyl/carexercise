@@ -49,6 +49,13 @@ public class CarController {
 		return convertToDTO(carService.giveCar(id, personId));
 	}
 
+	@PostMapping(path = "/{id}/take" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public CarDTO takeCar(@PathVariable Long id) {
+		return convertToDTO(carService.takeCar(id));
+	}
+
 	@PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public CarDTO updateCar(@PathVariable Long id, @RequestBody CarDTO carDto) {
