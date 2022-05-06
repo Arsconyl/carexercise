@@ -137,4 +137,25 @@ class CarControllerTest {
 					"Bearer "))
 			.andExpect(status().isUnauthorized());
 	}
+
+	@Test
+	@Order(9)
+	void testGiveCar() throws Exception {
+		mockMvc.perform(
+			post("/api/cars/4/give/5")
+			.header("Authorization",
+					"Bearer " + tokenManager.generateToken(userDetailsService.loadUserByUsername("carexercise")))
+			.contentType("application/json"))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType("application/json"))
+			.andExpect(jsonPath("$.id").value(4))
+			.andExpect(jsonPath("$.brand").value("Volkswagen"))
+			.andExpect(jsonPath("$.numberOfSeats").value(5L))
+			.andExpect(jsonPath("$.color").value("BLUE"))
+			.andExpect(jsonPath("$.person.id").value("5"))
+			.andExpect(jsonPath("$.person.firstName").value("Aby"))
+			.andExpect(jsonPath("$.person.lastName").value("Cyclette"))
+			.andExpect(jsonPath("$.person.company").value("Acme"))
+			.andExpect(jsonPath("$.person.type").value("PHYSICAL"));
+	}
 }

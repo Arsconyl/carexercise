@@ -1,5 +1,7 @@
 package com.ptc.carexercise.car;
 
+import com.ptc.carexercise.person.Person;
+import com.ptc.carexercise.person.PersonService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -7,8 +9,11 @@ public class CarService {
 
 	private final CarRepository carRepository;
 
-	public CarService(CarRepository carRepository) {
+	private final PersonService personService;
+
+	public CarService(CarRepository carRepository, PersonService personService) {
 		this.carRepository = carRepository;
+		this.personService = personService;
 	}
 
 	public Iterable<Car> getAllCars() {
@@ -29,5 +34,12 @@ public class CarService {
 
 	public void deleteCar(Long id) {
 		carRepository.deleteById(id);
+	}
+
+	public Car giveCar(Long id, Long personId) {
+		Car car = getCar(id);
+		Person person = personService.getPerson(personId);
+		car.setPerson(person);
+		return carRepository.save(car);
 	}
 }
