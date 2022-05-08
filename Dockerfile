@@ -1,4 +1,8 @@
+FROM maven:3.8.5-openjdk-18 as carexercise-build
+WORKDIR .
+COPY . .
+RUN mvn clean package -DskipTests
+
 FROM openjdk:18
-ARG JAR_FILE=target/carexercise-0.0.1-SNAPSHOT.jar
-COPY ${JAR_FILE} application.jar
+COPY --from=carexercise-build /target/carexercise-*.jar application.jar
 ENTRYPOINT ["java", "-jar", "application.jar"]
