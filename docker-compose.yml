@@ -12,9 +12,17 @@ services:
     build:
         context: .
     depends_on:
+      - angular-app
       - admin
       - db
 
+  angular-app:
+    image: 'carexercise-angular:latest'
+    container_name: carexercise-angular
+    ports:
+      - "4200:80"
+    build:
+        context: carexercise-angular
 
   db:
     image: 'postgres:14.2-alpine'

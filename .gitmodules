@@ -1,0 +1,3 @@
+[submodule "carexercise-angular"]
+	path = carexercise-angular
+	url = git@github.com:Arsconyl/carexercise-angular.git
